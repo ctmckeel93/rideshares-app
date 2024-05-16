@@ -1,0 +1,38 @@
+{% extends "partials/base.html" %} {% block body %}
+<div class="container p-3">
+    <div class="w-100 border border-dark p-3">
+        <h1>Ready for your trip to the post office?</h1>
+        <p>Who's driving?: {{ride.driver.first_name}}</p>
+        <p>Who is coming along? {{ride.rider.first_name}}</p>
+        <p>Date: {{ride.pickup_date.strftime("%B %d")}}</p>
+        <p>Pickup location: {{ride.pickup_location}}</p>
+        <p>Details: {{ride.details}}</p>
+        <div>
+            <a href="/rides/edit/{{ride.id}}">Edit</a>
+            <a href="/rides/delete/{{ride.id}}">Delete</a>
+        </div>
+    </div>
+    <hr />
+    <h3>Ride Messages:</h3>
+    <div
+        class="p-4 d-flex flex-column gap-4 align-items-around bg-secondary text-white"
+    >
+        {% for message in ride_messages %} {% if message.sender.id ==
+        logged_in.id %}
+        <p class="">You: {{ message.content}}</p>
+        {% else %}
+        <p>{{message.sender.first_name}}: {{message.content}}</p>
+        {% endif %} {% endfor %}
+        <form action="/messages" method="post">
+            <div class="form-group">
+                <input type="hidden" name="users_id" value="{{logged_in.id}}" />
+                <input type="hidden" name="rides_id" value="{{ride.id}}" />
+                <input name="content" type="text" class="form-control" />
+            </div>
+            <div class="form-group text-end mt-3">
+                <button class="btn btn-primary">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

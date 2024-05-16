@@ -1,0 +1,48 @@
+{% extends "partials/base.html" %} {% block body %}
+<div class="container">
+    <h1>Welcome {{user_name}}</h1>
+    <div class="d-flex justify-content-around">
+        <div
+            class="border border-dark w-50 p-4 d-flex flex-column align-items-center gap-3"
+        >
+        <h2>Request rideshare</h2>
+            {% for ride in rides_without_driver %}
+            <div class="w-50 border border-dark {{ "bg-warning" if logged_in.id == ride.rider.id}} p-3">
+                <p>Rider: {{ride.rider.first_name}}</p>
+                <p>Destination: {{ride.destination}}</p>
+                <p>Date: {{ride.pickup_date.strftime("%B %d")}}</p>
+                {% if logged_in.id == ride.rider.id %}
+                <div class="text-end">
+                    <a href="/rides/delete/{{ride.id}}" class="text-end">DELETE</a>
+                </div>
+                {% else %}
+                <div class="text-end">
+                    <a href="/rides/driver/{{logged_in.id}}/{{ride.id}}">I can drive!</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <div
+            class="border border-dark w-50 p-4 d-flex flex-column align-items-center"
+        >
+            <h2>Booked Rideshares</h2>
+            {% for ride in rides_with_driver %}
+            <div class="p-3 border border-dark">
+                <p>
+                    <strong>{{"You" if ride.driver.id == logged_in.id else ride.driver.first_name}}</strong> {{ "are" if ride.driver.id == logged_in.id else "is"}} driving <strong>{{ride.rider.first_name if ride.rider.id != logged_in.id else "You"}}</strong> to {{ride.destination}} on {{ride.pickup_date.strftime("%B %d")}}
+                </p>
+                <div>
+                    {% if ride.driver.id == logged_in.id %}
+                    <a href="/rides/{{ride.id}}">Details</a> |
+                    <a href="/rides/driver/{{ride.id}}">Cancel</a>
+                    {% elif ride.rider.id == logged_in.id %}
+                    <a href="/rides/{{ride.id}}">Details</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

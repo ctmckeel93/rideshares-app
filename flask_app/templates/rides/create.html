@@ -1,0 +1,17 @@
+{% extends "partials/base.html" %} {% from "macros/form.html" import form_start,
+form_end, input_groups, hidden_input with context %} {% block body %}
+<div class="container p-3">
+    {{form_start("/rides", "Request a ride")}} {{hidden_input("users_id",
+    logged_in.id)}} {{input_groups([("destination",
+    ""),("pickup_location","")])}}
+    <div class="form-group d-flex gap-3 align-items-center">
+        <label for="pickup_date" class="form-label">Pickup date</label>
+        <input type="date" name="pickup_date" />
+    </div>
+
+    <label for="details" class="form-label">Details</label>
+    <textarea name="details" cols="30" rows="10" class="form-group"></textarea>
+
+    {{form_end("Create")}}
+</div>
+{% endblock %}

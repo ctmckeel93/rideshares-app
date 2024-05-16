@@ -1,0 +1,15 @@
+{% extends "partials/base.html" %} {% from "macros/form.html" import form_start,
+form_end, input_groups, hidden_input with context %} {% block body %}
+<div class="container p-3">
+    {{form_start("/rides/edit/" + ride.id | string, "Request a ride")}}
+    {{hidden_input("id", ride.id)}}
+    {{input_groups([("pickup_location",ride.pickup_location)])}}
+
+    <label for="details" class="form-label">Details</label>
+    <textarea name="details" cols="30" rows="10" class="form-group">
+{{ride.details}}</textarea
+    >
+
+    {{form_end("Update")}}
+</div>
+{% endblock %}
