@@ -17,15 +17,13 @@
     <div
         class="p-4 d-flex flex-column gap-4 align-items-around bg-dark text-light"
     >
-    <form action="/messages" method="post">
+    <form action="/messages" method="post" class="message-form">
         <div class="form-group">
             <input type="hidden" name="users_id" value="{{logged_in.id}}" />
             <input type="hidden" name="rides_id" value="{{ride.id}}" />
             <input name="content" type="text" class="form-control bg-transparent" />
         </div>
-        <div class="form-group text-end mt-3">
-            <button class="btn form-button">Send Message</button>
-        </div>
+        <button class="btn form-button d-flex justify-content-center">Send Message</button>
     </form>
         {% for message in ride_messages %} {% if message.sender.id ==
         logged_in.id %}
