@@ -1,7 +1,7 @@
 {% extends "partials/base.html" %} {% block body %}
 <div class="container p-3">
     <div class="w-100 border border-dark p-3 text-light">
-        <h1 class="alt-text-color">Ready for your trip to the post office?</h1>
+        <h1 class="alt-text-color mb-5">Ready for your trip to the post office?</h1>
         <p>Who's driving?: <span class="alt-text-color">{{ride.driver.first_name}}</span></p>
         <p>Who is coming along? <span class="alt-text-color">{{ride.rider.first_name}}</span></p>
         <p>Date: {{ride.pickup_date.strftime("%B %d")}}</p>
@@ -23,7 +23,7 @@
             <input type="hidden" name="rides_id" value="{{ride.id}}" />
             <input name="content" type="text" class="form-control bg-transparent" />
         </div>
-        <button class="btn form-button d-flex justify-content-center">Send Message</button>
+        <button class="btn form-button d-flex justify-content-center align-items-center">Send</button>
     </form>
         {% for message in ride_messages %} {% if message.sender.id ==
         logged_in.id %}
