@@ -67,6 +67,7 @@ nav {
     top: 0;
 }
 
+
 @media screen and (max-width: 1280px) {
     nav, nav * {
         display: none !important;
