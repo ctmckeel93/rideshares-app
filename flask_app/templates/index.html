@@ -1,57 +1,16 @@
 {% extends "partials/base.html" %} {% block body %}
-<div class="container d-flex flex-column">
+<div class="container d-flex h-100">
 
-    <h1 class="alt-text-color text-center">Rideshares</h1>
     
-    <div class="container-fluid d-flex justify-content-evenly align-items-center w-100">
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100">
         
     
-        <form
-            action="/process"
-            class="d-flex flex-column flex-1 col-md-5 gap-3 bg-dark text-light"
-            method="POST"
-        >
-            <h2>Register</h2>
-            {% with messages = get_flashed_messages(category_filter="register") %}
-            {% if messages %}
-            <div class="alert alert-danger p-3">
-                {% for message in messages %}
-                <p>{{message}}</p>
-    
-                {% endfor %}
-            </div>
-            {% endif %} {% endwith%}
-            <input type="hidden" name="which_form" value="registration" />
-            <div class="form-group">
-                <label for="first_name" class="form-label">First Name</label>
-                <input name="first_name" type="text" class="form-control bg-transparent " />
-            </div>
-            <div class="form-group">
-                <label for="last_name" class="form-label">Last Name</label>
-                <input name="last_name" type="text" class="form-control bg-transparent " />
-            </div>
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input name="email" type="text" class="form-control bg-transparent " />
-            </div>
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input name="password" type="password" class="form-control bg-transparent " />
-            </div>
-            <div class="form-group">
-                <label for="confirm" class="form-label">Confirm Password</label>
-                <input name="confirm" type="text" class="form-control bg-transparent " />
-            </div>
-            <div class="form-group d-flex justify-content-end">
-                <button class="btn form-button">Register</button>
-            </div>
-        </form>
         <form
             action="/process"
             method="POST"
             class="d-flex flex-column col-md-3 gap-3 bg-dark text-light align-items-center"
         >
-            <h2>Login</h2>
+            <h2>Sign in</h2>
             {% with messages = get_flashed_messages(category_filter="login") %} {%
             if messages %}
             <div class="alert alert-danger p-3">
@@ -62,16 +21,20 @@
             </div>
             {% endif %} {% endwith%}
             <input type="hidden" name="which_form" value="login" />
-            <div class="form-group">
+            <div class="form-group w-75">
                 <label for="email" class="form-label">Email</label>
                 <input name="email" type="text" class="form-control bg-transparent" />
             </div>
-            <div class="form-group">
+            <div class="form-group w-75">
                 <label for="password" class="form-label">Password</label>
                 <input name="password" type="password" class="form-control bg-transparent" />
             </div>
-            <div class="form-group d-flex">
+            <div class="form-group d-flex w-75">
                 <button class="form-button btn justify-self-end">Login</button>
+            </div>
+            <div class="d-flex w-100 text-center gap-2 justify-content-center">
+                <p>Don't have an account?</p>
+                <a class="text-decoration-none alt-text-color"href="/signup">Create one here</a>
             </div>
         </form>
     </div>

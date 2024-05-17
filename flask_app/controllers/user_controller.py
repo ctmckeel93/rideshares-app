@@ -10,6 +10,11 @@ bcrypt = Bcrypt(app)
 def home():
     return render_template("index.html")
 
+@app.route("/signup")
+def signup():
+    return render_template("register.html")
+
+
 
 @app.route("/dashboard")
 def dashboard():
