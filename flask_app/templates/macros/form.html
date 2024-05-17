@@ -13,7 +13,7 @@
         {% endfor %}
     </div>
     {% endif %} {% endwith %}
-    <h2>{{title}}</h2>
+    <h2 class="alt-text-color">{{title}}</h2>
     {% endmacro %} {% macro hidden_input(name, value ) %}
     <input type="hidden" name="{{name}}" value="{{value}}" />
     {% endmacro%}
@@ -31,7 +31,7 @@
             name="{{field[0]}}"
             value="{{field[1]}}"
             type="{{field[2]}}"
-            class="form-control"
+            class="form-control bg-transparent"
         />
     </div>
     {% endfor %} {% endmacro %} }
@@ -75,7 +75,7 @@
 
         {% macro form_end(button_value) %}
     <div class="form-group text-end">
-        <button class="btn btn-primary">{{button_value}}</button>
+        <button class="btn form-button">{{button_value}}</button>
     </div>
 </form>
 {% endmacro %} }

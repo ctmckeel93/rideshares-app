@@ -1,0 +1,51 @@
+:root {
+    font-family: "Jersey 10", serif !important;
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input, textarea {
+    color: aquamarine !important;
+}
+
+.ride-card {
+    box-shadow: 1px, 2px, 3px rgba(50, 50, 50,0.87);
+    color: seashell;
+    height: 200px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid aquamarine */
+    background-color: rgba(127, 255, 212, 0.056) !important;
+}
+
+.delete-button {
+    /* background-color: red; */
+    width: 30px;
+    height: 30px;
+    color: seashell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    border-radius: 50%;
+    text-decoration: none;
+    
+
+}
+
+.form-button {
+    background-color: transparent;
+    border: 1px solid aquamarine;
+    color: aquamarine;
+}
+
+.alt-text-color {
+    color: aquamarine
+}

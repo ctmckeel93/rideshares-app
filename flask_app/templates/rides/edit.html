@@ -5,8 +5,8 @@ form_end, input_groups, hidden_input with context %} {% block body %}
     {{hidden_input("id", ride.id)}}
     {{input_groups([("pickup_location",ride.pickup_location)])}}
 
-    <label for="details" class="form-label">Details</label>
-    <textarea name="details" cols="30" rows="10" class="form-group">
+    <label for="details">Details</label>
+    <textarea name="details" cols="30" rows="10" class="form-control bg-transparent">
 {{ride.details}}</textarea
     >
 
