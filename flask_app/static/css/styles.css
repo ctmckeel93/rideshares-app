@@ -14,7 +14,21 @@
     color-scheme: dark;
 }
 
-#hamburger {display: none};
+#hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+#hamburger div {
+    background-color: aquamarine;
+    width: 20px;
+    height: 2px;
+
+}
 
 
 
@@ -89,6 +103,7 @@ nav {
 
     nav {
         background-color: rgba(0, 0, 0, 0.697) !important;
+        width: 50% !important;
     }
     
 
@@ -103,7 +118,7 @@ nav {
     }
 
     .message-form button {
-        width: 40px;
+        /* width: 40px; */
         height: 40px;
         /* border-radius: 50%; */
         font-size: x-small;
@@ -122,20 +137,7 @@ nav {
         /* border: 1px solid red; */
     }
 
-    #hamburger {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        position: absolute;
-        right: 10px;
-        top: 15px;
-    }
+
     
-    #hamburger div {
-        background-color: aquamarine;
-        width: 20px;
-        height: 2px;
-    
-    }
 
 }
