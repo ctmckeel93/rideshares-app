@@ -1,7 +1,7 @@
 {% extends "partials/base.html" %} {% block body %}
 <div class="container p-3 w-100">
     <div class="w-100 border border-dark p-3 text-light">
-        <h1 class="alt-text-color mb-5">Ready for your trip to the post office?</h1>
+        <h1 class="alt-text-color mb-5">Ready for your trip to {{ride.destination}}?</h1>
         <p>Who's driving?: <span class="alt-text-color">{{ride.driver.first_name}}</span></p>
         <p>Who is coming along? <span class="alt-text-color">{{ride.rider.first_name}}</span></p>
         <p>Date: {{ride.pickup_date.strftime("%B %d")}}</p>
@@ -14,11 +14,10 @@
     </div>
     <hr />
     <h3>Ride Messages:</h3>
-    <button onclick="test()">test</button>
     <div
         class="p-4 d-flex flex-column gap-4 align-items-around bg-dark text-light"
     >
-    <form action="/messages" method="post" class="message-form">
+    <form action="/messages" method="post" class="message-form d-flex flex-column gap-3">
         <div class="form-group">
             <input type="hidden" name="users_id" value="{{logged_in.id}}" />
             <input type="hidden" name="rides_id" value="{{ride.id}}" />
@@ -35,19 +34,4 @@
         
     </div>
 </div>
-<script type="text/javascript">
-    var socketio = io();
-    console.log("Connected to js")
-
-    var socket = io();
-    socket.on('connect', function() {
-        socket.emit('my event', {data: 'I\'m connected!'});
-    });
-
-    function test() {
-        console.log("Testing sockets")
-        socketio.emit("test", {"message": "It works"})
-    }
-
-</script>
 {% endblock %}

@@ -10,6 +10,14 @@
     box-sizing: border-box;
 }
 
+#date-input {
+    color-scheme: dark;
+}
+
+#hamburger {display: none};
+
+
+
 p {
     word-wrap: break-word;
 }
@@ -70,18 +78,19 @@ nav {
     width: 15%;
     font-size: 1.2rem;
     height: 100vh;
-    position:fixed !important;
+    /* position:fixed !important; */
     left:0;
     top: 0;
 }
 
 
+
 @media screen and (max-width: 1280px) {
-    nav, nav * {
-        display: none !important;
-        width: 0%;
-        background-color: none !important;
+
+    nav {
+        background-color: rgba(0, 0, 0, 0.697) !important;
     }
+    
 
     .message-form {
         display: flex;
@@ -111,6 +120,22 @@ nav {
         width: 100%;
         justify-content: center;
         /* border: 1px solid red; */
+    }
+
+    #hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        position: absolute;
+        right: 10px;
+        top: 15px;
+    }
+    
+    #hamburger div {
+        background-color: aquamarine;
+        width: 20px;
+        height: 2px;
+    
     }
 
 }

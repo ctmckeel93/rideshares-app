@@ -6,11 +6,11 @@ form_end, input_groups, hidden_input with context %} {% block body %}
     ""),("pickup_location","")])}}
     <div class="form-group d-flex gap-3 align-items-center">
         <label for="pickup_date" class="form-label">Pickup date</label>
-        <input type="date" name="pickup_date" class="form-control bg-transparent text-info" />
+        <input id="date-input" type="date" name="pickup_date" class="form-control bg-transparent alt-text-color" />
     </div>
 
     <label for="details" class="form-label">Details</label>
-    <textarea name="details" cols="30" rows="10" class="form-group bg-transparent text-info form-control"></textarea>
+    <textarea name="details" cols="30" rows="10" class="form-group bg-transparent alt-text-color form-control"></textarea>
 
     {{form_end("Create")}}
 </div>

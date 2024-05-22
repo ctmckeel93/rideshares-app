@@ -21,6 +21,7 @@ def dashboard():
     if not "logged_in" in session:
         return redirect("/")
     logged_in = user.User.get_by_id(session["logged_in"])
+    print("user_role",logged_in.role.name)
     return render_template(
         "dashboard.html", logged_in=logged_in, rides_without_driver=ride.Ride.get_all_without_driver(), rides_with_driver=ride.Ride.get_all_with_driver()
     )
@@ -37,6 +38,7 @@ def process():
                 "last_name": request.form["last_name"],
                 "email": request.form["email"],
                 "password": bcrypt.generate_password_hash(request.form["password"]),
+                "roles_id": 3 if request.form.get("role") == "yes" else 2
             }
             logged_in = user.User.save(data)
             session["logged_in"] = logged_in

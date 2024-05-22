@@ -16,7 +16,7 @@
                     {% if ride.rider.id != logged_in.id %}
                     <div class="card bg-dark rounded ride-card " style="width: 18rem;">
                         <div class="card-body d-flex flex-column w-100">
-                            {% if logged_in.id == ride.rider.id %}
+                            {% if logged_in.role.name == ride.rider.id %}
                             <a href="/rides/delete/{{ride.id}}" class="card-link delete-button">
                                 <p>&#10005;</p>
                             </a>

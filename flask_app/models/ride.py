@@ -21,53 +21,57 @@ class Ride:
 
     @classmethod
     def get_all_without_driver(cls):
-        query = "SELECT * FROM rides LEFT JOIN users ON users.id = rides.users_id WHERE drivers_id IS NULL;"
+        query = "SELECT * FROM rides LEFT JOIN users ON users.id = rides.users_id JOIN roles ON roles.roles_id = users.roles_id WHERE drivers_id IS NULL;"
         results = connectToMySQL(db).query_db(query)
         all_rides = []
-        for row in results:
-            ride = cls(row)
 
-            rider_data = {
-                "id": row["users.id"],
-                "first_name": row["first_name"],
-                "last_name": row["last_name"],
-                "email": row["email"],
-                "password": row["password"]
-            }
-            ride.rider = user.User(rider_data)
-            all_rides.append(ride)
+        if results:
+            for row in results:
+                ride = cls(row)
+
+                rider_data = {
+                    "id": row["users.id"],
+                    "first_name": row["first_name"],
+                    "last_name": row["last_name"],
+                    "email": row["email"],
+                    "password": row["password"]
+                }
+                ride.rider = user.User(rider_data)
+                all_rides.append(ride)
         return all_rides
 
     @classmethod
     def get_all_with_driver(cls):
-        query = "SELECT * FROM rides LEFT JOIN users ON users.id = rides.users_id JOIN users AS drivers ON rides.drivers_id = drivers.id WHERE rides.drivers_id IS NOT NULL;"
+        query = "SELECT * FROM rides LEFT JOIN users ON users.id = rides.users_id JOIN users AS drivers ON rides.drivers_id = drivers.id JOIN roles ON roles.roles_id = users.roles_id WHERE rides.drivers_id IS NOT NULL;"
 
         results = connectToMySQL(db).query_db(query)
         print(results)
         all_rides = []
-        for row in results:
-            ride = cls(row)
 
-            rider_data = {
-                "id": row["users.id"],
-                "first_name": row["first_name"],
-                "last_name": row["last_name"],
-                "email": row["email"],
-                "password": row["password"]
-            }
-            driver_data = {
-                "id": row["drivers.id"],
-                "first_name": row["drivers.first_name"],
-                "last_name": row["drivers.last_name"],
-                "email": row["drivers.email"],
-                "password": row["drivers.password"]
-            }
+        if results:
+            for row in results:
+                ride = cls(row)
 
-            ride.driver = user.User(driver_data)
-            ride.rider = user.User(rider_data)
+                rider_data = {
+                    "id": row["users.id"],
+                    "first_name": row["first_name"],
+                    "last_name": row["last_name"],
+                    "email": row["email"],
+                    "password": row["password"]
+                }
+                driver_data = {
+                    "id": row["drivers.id"],
+                    "first_name": row["drivers.first_name"],
+                    "last_name": row["drivers.last_name"],
+                    "email": row["drivers.email"],
+                    "password": row["drivers.password"]
+                }
 
-            
-            all_rides.append(ride)
+                ride.driver = user.User(driver_data)
+                ride.rider = user.User(rider_data)
+
+                
+                all_rides.append(ride)
         return all_rides
 
     @classmethod

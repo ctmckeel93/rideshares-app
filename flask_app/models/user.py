@@ -3,6 +3,7 @@ from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask_app.models import queries
 from flask import flash
+from flask_app.models import role
 import re
 
 bcrypt = Bcrypt(app)
@@ -20,6 +21,7 @@ class User:
         self.email = data["email"]
         self.password = data["password"]
         self.rides = []
+        self.role = None
 
     @classmethod
     def save(cls, data):
@@ -31,8 +33,18 @@ class User:
     @classmethod
     def get_by_id(cls, id):
         data = {"id": id}
-        query = queries.get_by(table, "id")
-        return cls(connectToMySQL(db).query_db(query, data)[0])
+        query = "SELECT * FROM users JOIN roles ON roles.roles_id = users.roles_id WHERE users.id=%(id)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        user = cls(results[0])
+        
+        role_data = {
+            "roles_id": results[0]["roles.roles_id"],
+            "name": results[0]["name"]
+        }
+
+        user.role = role.Role(role_data)
+
+        return user
 
     @classmethod
     def get_by_email(cls, email):

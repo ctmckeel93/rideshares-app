@@ -9,7 +9,6 @@ flask = "*"
 flask-bcrypt = "*"
 bootstrap-flask = "*"
 python-dotenv = "*"
-flask-socketio = "*"
 
 [dev-packages]
 
