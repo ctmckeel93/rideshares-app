@@ -4,6 +4,8 @@ from flask_app.models import user, ride, message
 
 @app.route("/rides/<int:id>")
 def ride_details(id):
+    if not "logged_in" in session:
+        return redirect("/")
     logged_in = user.User.get_by_id(session["logged_in"])
     ride_details = ride.Ride.get(id)
     ride_messages = message.Message.get_messages_by_ride({"ride_id": id})
@@ -24,6 +26,8 @@ def create_ride_request():
 
 @app.route("/rides/edit/<int:id>", methods=["GET", "POST"])
 def update_ride(id):
+    if not "logged_in" in session:
+        return redirect("/")
     if request.method == "GET":
         ride_to_edit = ride.Ride.get(id)
         return render_template("rides/edit.html", ride=ride_to_edit)
@@ -36,6 +40,8 @@ def update_ride(id):
 @app.route("/rides/driver/<int:ride_id>")
 @app.route("/rides/driver/<int:drivers_id>/<int:ride_id>")
 def update_driver(ride_id,drivers_id=None):
+    if not "logged_in" in session:
+        return redirect("/")
     data = {
         "id": ride_id ,
         "drivers_id": drivers_id 
@@ -45,11 +51,15 @@ def update_driver(ride_id,drivers_id=None):
 
 @app.route("/rides/delete/<int:ride_id>")
 def destroy_ride(ride_id):
+    if not "logged_in" in session:
+        return redirect("/")
     ride.Ride.destroy(ride_id)
     return redirect("/dashboard")
 
 @app.route("/rides/schedule") 
 def get_ride_schedule():
+    if not "logged_in" in session:
+        return redirect("/")
     scheduled_rides = ride.Ride.get_all_with_driver();
     logged_in = user.User.get_by_id(session.get("logged_in"))
     return render_template("scheduled_rides.html",rides_with_driver = scheduled_rides, logged_in = logged_in)

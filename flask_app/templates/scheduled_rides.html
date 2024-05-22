@@ -30,7 +30,7 @@
                     <div class="card-body d-flex flex-column w-100">
                         <h5 class="card-title mt-2">{{ride.destination}}</h5>
                         {% if ride.driver != null %}
-                        <p>{{ride.driver.id}} is picking you up from {{ride.pickup_location}} on {{ride.pickup_date.strftime('%B %d')}} and taking you to {{ride.destination}}</p>
+                        <p>{{ride.driver.first_name}} is picking you up from {{ride.pickup_location}} on {{ride.pickup_date.strftime('%B %d')}} and taking you to {{ride.destination}}</p>
                         {% else %}
                         <p>Waiting on Driver</p>
                         {% endif %}

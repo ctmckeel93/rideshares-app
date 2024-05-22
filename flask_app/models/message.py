@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import user, queries
+from flask import flash
 db = "rideshares"
 table = "messages"
 class Message:
@@ -33,4 +34,14 @@ class Message:
                 message.sender = user.User(sender_data)
                 all_messages.append(message)
         return all_messages
+    
+    @staticmethod
+    def validate_message(msg):
+        is_valid = True 
+
+        if len(msg.get("content")) < 1:
+            flash("Message cannot be blank")
+            is_valid = False
+
+        return is_valid
 
