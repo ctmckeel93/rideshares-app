@@ -14,6 +14,7 @@
     </div>
     <hr />
     <h3>Ride Messages:</h3>
+    <button onclick="test()">test</button>
     <div
         class="p-4 d-flex flex-column gap-4 align-items-around bg-dark text-light"
     >
@@ -34,5 +35,19 @@
         
     </div>
 </div>
+<script type="text/javascript">
+    var socketio = io();
+    console.log("Connected to js")
 
+    var socket = io();
+    socket.on('connect', function() {
+        socket.emit('my event', {data: 'I\'m connected!'});
+    });
+
+    function test() {
+        console.log("Testing sockets")
+        socketio.emit("test", {"message": "It works"})
+    }
+
+</script>
 {% endblock %}
