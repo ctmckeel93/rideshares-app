@@ -1,12 +1,12 @@
 {% extends "partials/base.html" %} {% block body %}
-<div class="container p-3">
+<div class="container p-3 w-100">
     <div class="w-100 border border-dark p-3 text-light">
         <h1 class="alt-text-color mb-5">Ready for your trip to the post office?</h1>
         <p>Who's driving?: <span class="alt-text-color">{{ride.driver.first_name}}</span></p>
         <p>Who is coming along? <span class="alt-text-color">{{ride.rider.first_name}}</span></p>
         <p>Date: {{ride.pickup_date.strftime("%B %d")}}</p>
         <p>Pickup location: <span class="alt-text-color">{{ride.pickup_location}}</span></p>
-        <p>Details: <span class="alt-text-color">{{ride.details}}</span></p>
+        <p class="d-flex gap-2 flex-wrap">Details: <span class="alt-text-color text-wrap w-100">{{ride.details}}</span></p>
         <div>
             <a class="alt-text-color text-decoration-none" href="/rides/edit/{{ride.id}}">Edit</a>
             <a class="alt-text-color text-decoration-none" href="/rides/delete/{{ride.id}}">Delete</a>
@@ -34,4 +34,5 @@
         
     </div>
 </div>
+
 {% endblock %}

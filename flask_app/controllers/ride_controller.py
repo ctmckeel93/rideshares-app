@@ -47,3 +47,9 @@ def update_driver(ride_id,drivers_id=None):
 def destroy_ride(ride_id):
     ride.Ride.destroy(ride_id)
     return redirect("/dashboard")
+
+@app.route("/rides/schedule") 
+def get_ride_schedule():
+    scheduled_rides = ride.Ride.get_all_with_driver();
+    logged_in = user.User.get_by_id(session.get("logged_in"))
+    return render_template("scheduled_rides.html",rides_with_driver = scheduled_rides, logged_in = logged_in)

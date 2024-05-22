@@ -6,6 +6,11 @@
             class="w-100 p-4 d-flex flex-column gap-3 align-items-center justify-content-center border-right border-light"
         >
             <h2 class="text-light">Seeking Driver</h2>
+            <div>
+                <a class="alt-text-color text-decoration-none active" href="/dashboard">Ride Requests</a>
+                <span class="text-light">|</span>
+                <a class="text-decoration-none alt-text-color"href="/rides/schedule">My Rides</a>
+            </div>
             <div class="d-flex gap-3 w-100 flex-wrap justify-content-center align-items-center">
                 {% for ride in rides_without_driver %}
                     {% if ride.rider.id != logged_in.id %}

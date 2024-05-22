@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+p {
+    word-wrap: break-word;
+}
+
 body {
     height: 100vh;
 }
@@ -53,7 +57,11 @@ input, textarea {
 }
 
 .alt-text-color {
-    color: aquamarine !important;
+    color: aquamarine;
+}
+
+a.active {
+    color: gold;
 }
 
 nav {
